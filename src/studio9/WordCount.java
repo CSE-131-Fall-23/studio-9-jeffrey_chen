@@ -31,8 +31,14 @@ public class WordCount {
 	public static Map<String, Integer> countWords(List<String> words) {
 
 		// FIXME
-		throw new NotYetImplementedException();
-
+		Map<String, Integer> wordCount = new HashMap<>();
+		for (int i=0; i<words.size();i++) {
+			String temp = words.get(i);
+			Integer count = wordCount.get(temp); // use Integer instead of int because Integer can store null in a map while int cannot
+			if (count == null) { wordCount.put(temp, 1); }
+			else { wordCount.put(temp, ++count); }	
+		}
+		return wordCount;
 	}
 	
 	public static void main(String[] args) {
@@ -45,7 +51,10 @@ public class WordCount {
 		wordList.add("to");
 		wordList.add("be");
 		Map<String, Integer> words = countWords(wordList);
-		
+		for (String keys : words.keySet())  
+		{
+		   System.out.println(keys + ":"+ words.get(keys));
+		}
 		//TODO: Write code that will iterate over the words map
 		//to verify its contents
 	}
